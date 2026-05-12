@@ -6,7 +6,7 @@ import { CartProvider } from "@/lib/cart-context";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "TechStore TPO — Loja + SPT",
+  title: "TechStore SPT — Loja (Sistema de Processamento de Transações)",
   description:
     "Demonstração de loja online com SPT (Sistema de Processamento de Transações) em PostgreSQL — modo cliente e vendedor.",
 };
@@ -25,7 +25,7 @@ export default function RootLayout({
           <Header />
           <main className="mx-auto max-w-5xl px-4 py-8">{children}</main>
           <footer className="border-t border-zinc-200 py-6 text-center text-xs text-zinc-500 dark:border-zinc-800">
-            TechStore TPO — SPT (Sistema de Processamento de Transações) com PostgreSQL
+            TechStore SPT — Sistema de Processamento de Transações (PostgreSQL)
           </footer>
         </CartProvider>
       </body>

@@ -58,16 +58,13 @@ export function ReportExportBar({ report }: { report: SellerReportPayload }) {
         escapeCsv(a.reason),
       ].join(",")
     );
-    const csv =
-      [header, ...orderLines].join("\n") +
-      adjHeader +
-      "\n" +
-      adjLines.join("\n");
-    const blob = new Blob([csv], { type: "text/csv;charset=utf-8" });
+    const blob = new Blob([[header, ...orderLines].join("\n"), adjHeader, "\n", adjLines.join("\n")].join(""), {
+      type: "text/csv;charset=utf-8",
+    });
     const url = URL.createObjectURL(blob);
     const a = document.createElement("a");
     a.href = url;
-    a.download = `relatorio-spt-${report.from.slice(0, 10)}_${report.to.slice(0, 10)}.csv`;
+    a.download = `relatorio-techstore-SPT-${report.from.slice(0, 10)}_${report.to.slice(0, 10)}.csv`;
     a.click();
     URL.revokeObjectURL(url);
   }
@@ -94,7 +91,7 @@ export function ReportExportBar({ report }: { report: SellerReportPayload }) {
 
 export function ReportPrintBody({ report }: { report: SellerReportPayload }) {
   return (
-    <div id="spt-relatorio" className="rounded-xl border border-zinc-200 bg-white p-4 text-sm dark:border-zinc-800 dark:bg-zinc-950">
+    <div id="relatorio-spt-area" className="rounded-xl border border-zinc-200 bg-white p-4 text-sm dark:border-zinc-800 dark:bg-zinc-950">
       <h2 className="text-lg font-bold text-zinc-900 dark:text-zinc-50">Relatório do SPT</h2>
       <p className="mt-1 text-zinc-600 dark:text-zinc-400">
         Período: {report.from.slice(0, 10)} a {report.to.slice(0, 10)}

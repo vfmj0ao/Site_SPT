@@ -5,12 +5,13 @@ import { cookies } from "next/headers";
 import { z } from "zod";
 
 import { getDb } from "@/db";
+import { SELLER_SESSION_COOKIE } from "@/lib/seller-session";
 import { orderItems, orders, products, stockAdjustments } from "@/db/schema";
 
 async function requireSeller(): Promise<void> {
   const pin = process.env.VENDEDOR_PIN?.trim();
   if (!pin) return;
-  const c = (await cookies()).get("tpo_vendedor");
+  const c = (await cookies()).get(SELLER_SESSION_COOKIE);
   if (c?.value !== "1") {
     throw new Error("Sessão do vendedor inválida. Inicie sessão em /vendedor/login.");
   }

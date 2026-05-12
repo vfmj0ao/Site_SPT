@@ -1,6 +1,8 @@
 import { cookies } from "next/headers";
 import { NextResponse } from "next/server";
 
+import { SELLER_SESSION_COOKIE } from "@/lib/seller-session";
+
 export async function POST(request: Request) {
   const expected = process.env.VENDEDOR_PIN?.trim();
 
@@ -13,7 +15,7 @@ export async function POST(request: Request) {
 
   if (!expected) {
     const store = await cookies();
-    store.set("tpo_vendedor", "1", {
+    store.set(SELLER_SESSION_COOKIE, "1", {
       httpOnly: true,
       sameSite: "lax",
       path: "/",
@@ -28,7 +30,7 @@ export async function POST(request: Request) {
 
   if (body.pin === expected) {
     const store = await cookies();
-    store.set("tpo_vendedor", "1", {
+    store.set(SELLER_SESSION_COOKIE, "1", {
       httpOnly: true,
       sameSite: "lax",
       path: "/",

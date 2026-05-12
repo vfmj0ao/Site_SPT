@@ -28,7 +28,7 @@ type CartContextValue = {
   totalCents: number;
 };
 
-const STORAGE_KEY = "site-tpo-cart";
+const STORAGE_KEY = "techstore-spt-cart";
 
 const CartContext = createContext<CartContextValue | null>(null);
 

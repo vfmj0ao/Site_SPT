@@ -32,7 +32,7 @@ export function Header() {
             href="/"
             className="text-lg font-semibold tracking-tight text-zinc-900 dark:text-zinc-50"
           >
-            TechStore TPO
+            TechStore SPT
           </Link>
           <div className="flex flex-wrap items-center gap-1 text-xs font-medium">
             <span className="mr-1 text-zinc-500">{SPT_ACRONYM}:</span>

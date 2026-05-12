@@ -3,11 +3,11 @@ import { SPT_ACRONYM, SPT_FULL_NAME, sptPhases } from "@/lib/spt-copy";
 export function SptFlowExplainer() {
   return (
     <section
-      aria-labelledby="spt-flow-heading"
+      aria-labelledby="spt-fluxo-heading"
       className="rounded-2xl border border-indigo-200 bg-indigo-50/80 p-5 dark:border-indigo-900/60 dark:bg-indigo-950/30"
     >
       <h2
-        id="spt-flow-heading"
+        id="spt-fluxo-heading"
         className="text-lg font-semibold text-indigo-950 dark:text-indigo-100"
       >
         Fluxo completo do {SPT_ACRONYM} ({SPT_FULL_NAME})

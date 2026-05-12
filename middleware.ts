@@ -1,6 +1,8 @@
 import type { NextRequest } from "next/server";
 import { NextResponse } from "next/server";
 
+import { SELLER_SESSION_COOKIE } from "@/lib/seller-session";
+
 export function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
 
@@ -17,7 +19,7 @@ export function middleware(request: NextRequest) {
     return NextResponse.next();
   }
 
-  if (request.cookies.get("tpo_vendedor")?.value === "1") {
+  if (request.cookies.get(SELLER_SESSION_COOKIE)?.value === "1") {
     return NextResponse.next();
   }
 
