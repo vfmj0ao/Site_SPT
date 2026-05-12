@@ -1,5 +1,26 @@
 import type { NextConfig } from "next";
 
-const nextConfig: NextConfig = {};
+const securityHeaders = [
+  { key: "X-Content-Type-Options", value: "nosniff" },
+  { key: "X-Frame-Options", value: "SAMEORIGIN" },
+  { key: "Referrer-Policy", value: "strict-origin-when-cross-origin" },
+  {
+    key: "Permissions-Policy",
+    value: "camera=(), microphone=(), geolocation=(), interest-cohort=()",
+  },
+];
+
+const nextConfig: NextConfig = {
+  async headers() {
+    const h = [...securityHeaders];
+    if (process.env.VERCEL === "1") {
+      h.push({
+        key: "Strict-Transport-Security",
+        value: "max-age=63072000; includeSubDomains; preload",
+      });
+    }
+    return [{ source: "/:path*", headers: h }];
+  },
+};
 
 export default nextConfig;

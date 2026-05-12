@@ -1,16 +1,36 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import { z } from "zod";
 
 import { getOrderById } from "@/app/actions/orders";
 import { formatBrlFromCents } from "@/lib/money";
 import { SPT_ACRONYM } from "@/lib/spt-copy";
 
-type Props = { params: Promise<{ id: string }> };
+export const metadata: Metadata = {
+  robots: { index: false, follow: false },
+};
 
-export default async function PedidoPage({ params }: Props) {
+type Props = {
+  params: Promise<{ id: string }>;
+  searchParams: Promise<{ email?: string }>;
+};
+
+export default async function PedidoPage({ params, searchParams }: Props) {
   const { id } = await params;
+  const { email: emailRaw } = await searchParams;
+
+  if (!z.string().uuid().safeParse(id).success) {
+    notFound();
+  }
+
   const data = await getOrderById(id);
   if (!data) notFound();
+
+  const emailParam = emailRaw?.trim().toLowerCase() ?? "";
+  if (!emailParam || emailParam !== data.order.customerEmail.toLowerCase()) {
+    notFound();
+  }
 
   const { order, items } = data;
   const created = new Intl.DateTimeFormat("pt-BR", {

@@ -5,6 +5,13 @@ import { SELLER_SESSION_COOKIE } from "@/lib/seller-session";
 
 export async function POST() {
   const store = await cookies();
-  store.set(SELLER_SESSION_COOKIE, "", { httpOnly: true, path: "/", maxAge: 0 });
+  const secure = process.env.NODE_ENV === "production";
+  store.set(SELLER_SESSION_COOKIE, "", {
+    httpOnly: true,
+    sameSite: "lax",
+    secure,
+    path: "/",
+    maxAge: 0,
+  });
   return NextResponse.json({ ok: true });
 }

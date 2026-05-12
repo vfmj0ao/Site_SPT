@@ -46,7 +46,10 @@ export default function CheckoutPage() {
         return;
       }
       clear();
-      router.push(`/pedido/${result.orderId}`);
+      const emailNorm = email.trim().toLowerCase();
+      router.push(
+        `/pedido/${result.orderId}?email=${encodeURIComponent(emailNorm)}`
+      );
     });
   }
 

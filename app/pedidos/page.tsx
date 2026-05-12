@@ -67,7 +67,7 @@ export default async function PedidosPage({ searchParams }: Props) {
                     {formatBrlFromCents(o.totalCents)}
                   </span>
                   <Link
-                    href={`/pedido/${o.id}`}
+                    href={`/pedido/${o.id}?email=${encodeURIComponent(o.customerEmail)}`}
                     className="text-sm text-zinc-600 underline dark:text-zinc-400"
                   >
                     Detalhes
