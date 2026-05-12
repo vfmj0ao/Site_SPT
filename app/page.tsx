@@ -5,12 +5,7 @@ import type { Product } from "@/db/schema";
 import { SPT_ACRONYM, SPT_FULL_NAME } from "@/lib/spt-copy";
 
 export default async function HomePage() {
-  let products: Product[] = [];
-  try {
-    products = await getProducts();
-  } catch {
-    products = [];
-  }
+  const products = await getProducts().catch((): Product[] => []);
 
   return (
     <div className="space-y-8">
