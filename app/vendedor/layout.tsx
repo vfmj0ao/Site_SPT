@@ -26,7 +26,7 @@ export default function VendedorLayout({
           href="/como-funciona"
           className="text-sm text-indigo-700 underline dark:text-indigo-300"
         >
-          Ver fluxo do SPT
+          Como funciona o SPT
         </Link>
       </div>
       <VendedorNav />

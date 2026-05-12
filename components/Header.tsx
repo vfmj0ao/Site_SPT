@@ -42,7 +42,7 @@ export function Header() {
               href="/como-funciona"
               className="rounded-lg px-2.5 py-1 text-indigo-600 hover:bg-indigo-50 dark:text-indigo-400 dark:hover:bg-indigo-950/40"
             >
-              Fluxo completo
+              Como funciona o SPT
             </Link>
           </div>
         </div>

@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 import {
   SPT_ACRONYM,
   SPT_FULL_NAME,
@@ -5,7 +7,12 @@ import {
   sptPhases,
 } from "@/lib/spt-copy";
 
-export function SptFlowExplainer() {
+type Props = {
+  /** Se false, omite os links “Onde no site” (útil em impressões muito compactas). */
+  showWhereLinks?: boolean;
+};
+
+export function SptFlowExplainer({ showWhereLinks = true }: Props) {
   return (
     <section
       aria-labelledby="spt-fluxo-heading"
@@ -32,12 +39,28 @@ export function SptFlowExplainer() {
             <span className="absolute -left-1 -top-1 flex h-6 w-6 items-center justify-center rounded-full bg-indigo-600 text-xs font-bold text-white">
               {i + 1}
             </span>
-            <p className="pl-5 font-semibold text-indigo-950 dark:text-indigo-100">
-              {p.title}
-            </p>
+            <p className="pl-5 font-semibold text-indigo-950 dark:text-indigo-100">{p.title}</p>
             <p className="mt-2 text-xs leading-relaxed text-zinc-600 dark:text-zinc-400">
               {p.desc}
             </p>
+            {showWhereLinks ? (
+              <p className="mt-2 border-t border-indigo-100 pt-2 text-[11px] leading-snug text-indigo-800/90 dark:border-indigo-900/50 dark:text-indigo-200/85">
+                <span className="font-medium text-indigo-950 dark:text-indigo-100">
+                  Onde no site:{" "}
+                </span>
+                {p.links.map((l, j) => (
+                  <span key={l.href}>
+                    {j > 0 ? " · " : null}
+                    <Link
+                      href={l.href}
+                      className="underline decoration-indigo-300 underline-offset-2 hover:text-indigo-950 dark:hover:text-white"
+                    >
+                      {l.label}
+                    </Link>
+                  </span>
+                ))}
+              </p>
+            ) : null}
           </li>
         ))}
       </ol>

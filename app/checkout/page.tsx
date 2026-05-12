@@ -7,6 +7,7 @@ import { useState, useTransition } from "react";
 import { placeOrder } from "@/app/actions/orders";
 import { useCart } from "@/lib/cart-context";
 import { formatBrlFromCents } from "@/lib/money";
+import { sptCheckoutDbSteps } from "@/lib/spt-copy";
 
 export default function CheckoutPage() {
   const router = useRouter();
@@ -57,6 +58,16 @@ export default function CheckoutPage() {
           Fase de <strong>processamento</strong> do SPT: o pedido é gravado no servidor numa única
           transação ACID no PostgreSQL (validação de stock + pedido + linhas).
         </p>
+        <details className="mt-3 rounded-lg border border-indigo-200/80 bg-indigo-50/50 p-3 text-sm text-indigo-950 dark:border-indigo-900/50 dark:bg-indigo-950/25 dark:text-indigo-100">
+          <summary className="cursor-pointer font-medium text-indigo-900 dark:text-indigo-100">
+            Ver passos técnicos executados ao confirmar
+          </summary>
+          <ol className="mt-2 list-decimal space-y-1.5 pl-5 text-xs leading-relaxed text-indigo-900/95 dark:text-indigo-100/90">
+            {sptCheckoutDbSteps.map((step, i) => (
+              <li key={i}>{step}</li>
+            ))}
+          </ol>
+        </details>
       </div>
 
       <div className="rounded-xl border border-zinc-200 bg-white p-4 text-sm dark:border-zinc-800 dark:bg-zinc-950">

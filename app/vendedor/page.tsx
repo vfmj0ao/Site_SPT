@@ -2,6 +2,7 @@ import Link from "next/link";
 
 import { getSellerOverview } from "@/app/actions/seller";
 import { formatBrlFromCents } from "@/lib/money";
+import { SPT_ACRONYM, SPT_FULL_NAME } from "@/lib/spt-copy";
 
 function fmtDate(d: Date) {
   return new Intl.DateTimeFormat("pt-BR", {
@@ -28,6 +29,14 @@ export default async function VendedorDashboardPage() {
 
   return (
     <div className="space-y-8">
+      <p className="rounded-xl border border-amber-200/80 bg-white/80 p-3 text-sm leading-relaxed text-zinc-700 dark:border-amber-900/40 dark:bg-zinc-950/60 dark:text-zinc-300">
+        No painel do vendedor vês a face <strong className="text-zinc-900 dark:text-zinc-100">edição</strong>,{" "}
+        <strong className="text-zinc-900 dark:text-zinc-100">armazenamento</strong> e{" "}
+        <strong className="text-zinc-900 dark:text-zinc-100">relatórios</strong> do{" "}
+        {SPT_ACRONYM} ({SPT_FULL_NAME}): ajustes de stock com motivo, pedidos recentes e exportação
+        para análise. Cada alteração de stock persistida é tratada como transação com registo de auditoria.
+      </p>
+
       <section className="grid gap-4 sm:grid-cols-3">
         <div className="rounded-xl border border-zinc-200 bg-white p-4 dark:border-zinc-800 dark:bg-zinc-950">
           <p className="text-xs font-medium uppercase text-zinc-500">Pedidos (total)</p>

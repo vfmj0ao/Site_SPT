@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 
 import { getOrderById } from "@/app/actions/orders";
 import { formatBrlFromCents } from "@/lib/money";
+import { SPT_ACRONYM } from "@/lib/spt-copy";
 
 type Props = { params: Promise<{ id: string }> };
 
@@ -49,6 +50,12 @@ export default async function PedidoPage({ params }: Props) {
           Total pago: {formatBrlFromCents(order.totalCents)}
         </p>
       </div>
+
+      <p className="rounded-lg border border-zinc-200 bg-zinc-50 px-3 py-2 text-xs leading-relaxed text-zinc-600 dark:border-zinc-800 dark:bg-zinc-900/40 dark:text-zinc-400">
+        <strong className="text-zinc-800 dark:text-zinc-200">Fase de relatório do {SPT_ACRONYM}:</strong>{" "}
+        este comprovante reflecte linhas já persistidas após COMMIT (durabilidade ACID). O stock foi
+        atualizado na mesma transação que criou o pedido.
+      </p>
 
       <div className="flex flex-wrap gap-3 text-sm">
         <Link href="/" className="text-emerald-700 underline dark:text-emerald-400">
