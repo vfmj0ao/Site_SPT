@@ -1,7 +1,6 @@
 "use client";
 
 import { useCart } from "@/lib/cart-context";
-import { formatBrlFromCents } from "@/lib/money";
 
 type Props = {
   productId: string;

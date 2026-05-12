@@ -1,10 +1,11 @@
 import { getProducts } from "@/app/actions/products";
 import { ProductGrid } from "@/components/ProductGrid";
 import { SptFlowExplainer } from "@/components/SptFlowExplainer";
+import type { Product } from "@/db/schema";
 import { SPT_ACRONYM, SPT_FULL_NAME } from "@/lib/spt-copy";
 
 export default async function HomePage() {
-  let products;
+  let products: Product[] = [];
   try {
     products = await getProducts();
   } catch {
