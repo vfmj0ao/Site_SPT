@@ -2,6 +2,11 @@
   "name": "site-spt",
   "version": "0.1.0",
   "private": true,
+  "description": "TechStore SPT — loja de demonstração (Next.js, PostgreSQL/Neon). Acrónimo: SPT (Sistema de Processamento de Transações).",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/vfmj0ao/Site_SPT.git"
+  },
   "scripts": {
     "dev": "next dev --turbopack",
     "build": "next build",

@@ -2,7 +2,7 @@ import { getProducts } from "@/app/actions/products";
 import { ProductGrid } from "@/components/ProductGrid";
 import { SptFlowExplainer } from "@/components/SptFlowExplainer";
 import type { Product } from "@/db/schema";
-import { SPT_ACRONYM, SPT_FULL_NAME } from "@/lib/spt-copy";
+import { SPT_ACRONYM, SPT_FULL_NAME, SPT_PARALLEL_ENGLISH_NAME } from "@/lib/spt-copy";
 
 export default async function HomePage() {
   let products: Product[] = [];
@@ -27,8 +27,10 @@ export default async function HomePage() {
           <strong className="font-medium text-zinc-800 dark:text-zinc-200">
             transação no PostgreSQL
           </strong>{" "}
-          que valida estoque, grava o pedido e baixa o stock de forma atômica (tudo ou nada). Em
-          inglês o mesmo conceito costuma chamar-se <strong>TPS</strong>.
+          que valida estoque, grava o pedido e baixa o stock de forma atómica (tudo ou nada). Em
+          literatura anglófona o mesmo tipo de sistema costuma designar-se{" "}
+          <strong>{SPT_PARALLEL_ENGLISH_NAME}</strong>; em português usamos{" "}
+          <strong>{SPT_ACRONYM}</strong> ({SPT_FULL_NAME}).
         </p>
       </div>
       <SptFlowExplainer />

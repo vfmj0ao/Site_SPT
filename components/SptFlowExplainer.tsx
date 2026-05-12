@@ -1,4 +1,9 @@
-import { SPT_ACRONYM, SPT_FULL_NAME, sptPhases } from "@/lib/spt-copy";
+import {
+  SPT_ACRONYM,
+  SPT_FULL_NAME,
+  SPT_PARALLEL_ENGLISH_NAME,
+  sptPhases,
+} from "@/lib/spt-copy";
 
 export function SptFlowExplainer() {
   return (
@@ -13,9 +18,10 @@ export function SptFlowExplainer() {
         Fluxo completo do {SPT_ACRONYM} ({SPT_FULL_NAME})
       </h2>
       <p className="mt-2 text-sm text-indigo-900/90 dark:text-indigo-200/90">
-        Em inglês costuma usar-se o acrónimo <strong>TPS</strong> (Transaction Processing
-        System); em português o equivalente é <strong>{SPT_ACRONYM}</strong> — o mesmo tipo
-        de sistema (transações curtas, consistentes e rastreáveis).
+        Em literatura anglófona o mesmo tipo de sistema costuma designar-se{" "}
+        <strong>{SPT_PARALLEL_ENGLISH_NAME}</strong>; em português este projeto usa o acrónimo{" "}
+        <strong>{SPT_ACRONYM}</strong> ({SPT_FULL_NAME}) — o mesmo tipo de sistema (transações
+        curtas, consistentes e rastreáveis).
       </p>
       <ol className="mt-4 grid gap-3 sm:grid-cols-2 lg:grid-cols-5">
         {sptPhases.map((p, i) => (

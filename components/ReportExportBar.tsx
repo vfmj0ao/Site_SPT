@@ -58,7 +58,8 @@ export function ReportExportBar({ report }: { report: SellerReportPayload }) {
         escapeCsv(a.reason),
       ].join(",")
     );
-    const blob = new Blob([[header, ...orderLines].join("\n"), adjHeader, "\n", adjLines.join("\n")].join(""), {
+    const csvText = [[header, ...orderLines].join("\n"), adjHeader, "\n", adjLines.join("\n")].join("");
+    const blob = new Blob([csvText], {
       type: "text/csv;charset=utf-8",
     });
     const url = URL.createObjectURL(blob);

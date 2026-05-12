@@ -2,6 +2,9 @@
 export const SPT_FULL_NAME = "Sistema de Processamento de Transações";
 export const SPT_ACRONYM = "SPT";
 
+/** Em inglês, nome usual da mesma classe de sistemas (por extenso, para não confundir com SPT). */
+export const SPT_PARALLEL_ENGLISH_NAME = "Transaction Processing System";
+
 export const sptPhases = [
   {
     key: "coleta",

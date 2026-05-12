@@ -1,7 +1,11 @@
 import Link from "next/link";
 
 import { SptFlowExplainer } from "@/components/SptFlowExplainer";
-import { SPT_ACRONYM, SPT_FULL_NAME } from "@/lib/spt-copy";
+import {
+  SPT_ACRONYM,
+  SPT_FULL_NAME,
+  SPT_PARALLEL_ENGLISH_NAME,
+} from "@/lib/spt-copy";
 
 export default function ComoFuncionaPage() {
   return (
@@ -11,8 +15,9 @@ export default function ComoFuncionaPage() {
           Como este site demonstra o {SPT_ACRONYM}
         </h1>
         <p className="mt-2 max-w-3xl text-sm leading-relaxed text-zinc-600 dark:text-zinc-400">
-          {SPT_FULL_NAME} ({SPT_ACRONYM}) é o conceito; em inglês o mesmo tipo de sistema chama-se
-          frequentemente <strong>TPS</strong> (Transaction Processing System). Abaixo vês as fases do
+          {SPT_FULL_NAME} ({SPT_ACRONYM}) é o conceito usado neste site; em literatura anglófona o
+          mesmo tipo de sistema costuma designar-se <strong>{SPT_PARALLEL_ENGLISH_NAME}</strong>.
+          Abaixo vês as fases do
           fluxo e onde cada uma acontece na aplicação.
         </p>
       </div>
@@ -27,7 +32,7 @@ export default function ComoFuncionaPage() {
           <table className="min-w-full text-left text-sm">
             <thead className="border-b border-zinc-200 bg-zinc-50 text-xs uppercase text-zinc-500 dark:border-zinc-800 dark:bg-zinc-900">
               <tr>
-                <th className="px-3 py-2">Fase do SPT</th>
+                <th className="px-3 py-2">Fase do {SPT_ACRONYM}</th>
                 <th className="px-3 py-2">Modo cliente (loja)</th>
                 <th className="px-3 py-2">Modo vendedor (painel)</th>
               </tr>
