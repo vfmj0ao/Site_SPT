@@ -1,9 +1,9 @@
 import { asc, eq } from "drizzle-orm";
 
 import { getDb } from "@/db";
-import { products } from "@/db/schema";
+import { products, type Product } from "@/db/schema";
 
-export async function getProducts() {
+export async function getProducts(): Promise<Product[]> {
   return getDb().select().from(products).orderBy(asc(products.name));
 }
 
