@@ -5,7 +5,15 @@ import type { Product } from "@/db/schema";
 import { SPT_ACRONYM, SPT_FULL_NAME } from "@/lib/spt-copy";
 
 export default async function HomePage() {
-  const products = await getProducts().catch((): Product[] => []);
+  let products: Product[] = [];
+  let loadError: string | null = null;
+  try {
+    products = await getProducts();
+  } catch (e) {
+    loadError =
+      e instanceof Error ? e.message : "Não foi possível ligar à base de dados.";
+    products = [];
+  }
 
   return (
     <div className="space-y-8">
@@ -24,7 +32,7 @@ export default async function HomePage() {
         </p>
       </div>
       <SptFlowExplainer />
-      <ProductGrid products={products} />
+      <ProductGrid products={products} loadError={loadError} />
     </div>
   );
 }

@@ -4,19 +4,34 @@ import { AddToCartButton } from "@/components/AddToCartButton";
 import { formatBrlFromCents } from "@/lib/money";
 import type { Product } from "@/db/schema";
 
-export function ProductGrid({ products }: { products: Product[] }) {
+export function ProductGrid({
+  products,
+  loadError,
+}: {
+  products: Product[];
+  loadError?: string | null;
+}) {
   if (products.length === 0) {
+    if (loadError) {
+      return (
+        <div className="rounded-xl border border-red-200 bg-red-50 p-8 text-center text-sm text-red-900 dark:border-red-900/60 dark:bg-red-950/30 dark:text-red-200">
+          <p className="font-semibold">Erro ao carregar produtos</p>
+          <p className="mt-2 font-mono text-xs opacity-90">{loadError}</p>
+          <p className="mt-3 text-red-800 dark:text-red-300">
+            Confere se a variável <code className="rounded bg-red-100 px-1 dark:bg-red-900/50">DATABASE_URL</code> na
+            Vercel está correta e se a base está acessível a partir da internet.
+          </p>
+        </div>
+      );
+    }
     return (
       <p className="rounded-xl border border-dashed border-zinc-300 bg-zinc-50 p-8 text-center text-zinc-600 dark:border-zinc-700 dark:bg-zinc-900/40 dark:text-zinc-400">
-        Nenhum produto cadastrado. Rode{" "}
-        <code className="rounded bg-zinc-200 px-1 py-0.5 text-sm dark:bg-zinc-800">
-          npm run db:push
-        </code>{" "}
-        e{" "}
-        <code className="rounded bg-zinc-200 px-1 py-0.5 text-sm dark:bg-zinc-800">
-          npm run db:seed
-        </code>
-        .
+        Nenhum produto na base de dados. Na tua máquina (com o mesmo{" "}
+        <code className="rounded bg-zinc-200 px-1 py-0.5 text-sm dark:bg-zinc-800">DATABASE_URL</code> que usas na
+        Vercel), corre na pasta do projeto:{" "}
+        <code className="rounded bg-zinc-200 px-1 py-0.5 text-sm dark:bg-zinc-800">npm run db:push</code> e depois{" "}
+        <code className="rounded bg-zinc-200 px-1 py-0.5 text-sm dark:bg-zinc-800">npm run db:seed</code>.
+        A Vercel não executa estes comandos sozinha — os dados ficam no Neon.
       </p>
     );
   }
